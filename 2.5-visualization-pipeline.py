@@ -23,15 +23,20 @@ kneeReader.SetFileName(kneeFile)
 
 renderWindow.SetSize(800,800)
 
+## Gets the contours of the knee file and displays it with the given amount of density units on the first layer (index based)
 kneeContourFilter.SetInputConnection(kneeReader.GetOutputPort())
 kneeContourFilter.SetValue(0, 80)
 
+## Adding the outliner
 kneeOutlineFilter.SetInputConnection(kneeReader.GetOutputPort())
 
+## Fix subsample problem for smoothness
 kneeExtractVOI.SetInputConnection(kneeReader.GetOutputPort())
 kneeExtractVOI.SetSampleRate(2, 2, 2)
 
+## Use the countour filter to display the final image
 kneeMapper.SetInputConnection(kneeContourFilter.GetOutputPort())
+## Remove the default color table
 kneeMapper.SetScalarVisibility(0)
 
 kneeActor.SetMapper(kneeMapper)
