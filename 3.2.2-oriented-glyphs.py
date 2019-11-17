@@ -27,13 +27,13 @@ glyph.SetScaleFactor(0.25)
 lookupTable = vtk.vtkLookupTable()
 lookupTable.SetNumberOfColors(16)
 
-hedgehogMapper = vtk.vtkPolyDataMapper()
-hedgehogMapper.SetInputConnection(glyph.GetOutputPort())
-hedgehogMapper.SetLookupTable(lookupTable)
-hedgehogMapper.SetScalarRange(reader.GetOutput().GetScalarRange())
+glyphMapper = vtk.vtkPolyDataMapper()
+glyphMapper.SetInputConnection(glyph.GetOutputPort())
+glyphMapper.SetLookupTable(lookupTable)
+glyphMapper.SetScalarRange(reader.GetOutput().GetScalarRange())
 
 actor = vtk.vtkActor()
-actor.SetMapper(hedgehogMapper)
+actor.SetMapper(glyphMapper)
 
 # Create a rendering window and renderer
 
