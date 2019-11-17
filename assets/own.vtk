@@ -1,0 +1,42 @@
+# vtk DataFile Version 2.0
+The colored quad for assignment 2.3
+ASCII
+DATASET UNSTRUCTURED_GRID
+POINTS 9 int
+0 0 0
+0 1 0
+0 2 0
+
+1 2 0
+1 1 0
+1 0 0
+
+2 0 0
+2 1 0
+2 2 0
+
+CELLS 4 20
+4 0 5 4 1
+4 1 4 3 2
+4 5 6 7 4
+4 4 7 8 3
+
+CELL_TYPES 4
+9
+9
+9
+9
+
+POINT_DATA 9
+COLOR_SCALARS colors 3
+1 0 0
+1 0 0
+1 0 0
+
+0 1 0
+0 0 1
+0 1 0
+
+1 0 0
+1 0 0
+1 0 0
