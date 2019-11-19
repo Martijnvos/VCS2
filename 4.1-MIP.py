@@ -6,12 +6,14 @@ reader = vtk.vtkStructuredPointsReader()
 reader.SetFileName(objectPath)
 reader.Update()
 
+## Create a default volume raycasting MIP function to use in the volume mapper
 raycasting_function = vtk.vtkVolumeRayCastMIPFunction()
 
 volumeMapper = vtk.vtkVolumeRayCastMapper()
 volumeMapper.SetVolumeRayCastFunction(raycasting_function)
 volumeMapper.SetInputConnection(reader.GetOutputPort())
 
+## Use vtkVolume instead of vtkActor
 volume = vtk.vtkVolume()
 volume.SetMapper(volumeMapper)
 
