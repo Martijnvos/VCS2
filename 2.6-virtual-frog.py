@@ -1,5 +1,17 @@
 import vtk
 
+def ClickCallbackFunction(obj, ev):
+    clickedPosition = renderWindow.GetInteractor().GetEventPosition()
+
+    ## Get the actor at the spot that's being clicked on
+    picker = vtk.vtkCellPicker()
+    picker.Pick(clickedPosition[0], clickedPosition[1], 0, renderer)
+
+    ## If an actor could be found at that spot, set its visibility to off
+    if picker.GetActor():
+        picker.GetActor().VisibilityOff()
+    return
+
 def CreateFrogActor(tissue):
     fileName = './assets/frog/{}.vtk'.format(tissue)
 
@@ -69,4 +81,5 @@ renderer.SetBackground(colors.GetColor3d("SlateGray"))
 renderWindow.SetSize(640, 480)
 renderWindow.Render()
 
+renderWindowInteractor.AddObserver('LeftButtonPressEvent', ClickCallbackFunction)
 renderWindowInteractor.Start()
