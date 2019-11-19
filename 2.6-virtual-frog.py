@@ -27,6 +27,24 @@ def CreateFrogActor(tissue):
 
     return actor
 
+## Add frog skin actor
+def CreateFrogSkin():
+    skinFile = './assets/frog/skin.vtk'
+
+    reader = vtk.vtkPolyDataReader()
+    reader.SetFileName(skinFile)
+    reader.Update()
+
+    mapper = vtk.vtkPolyDataMapper()
+    mapper.SetInputConnection(reader.GetOutputPort())
+
+    actor = vtk.vtkActor()
+    actor.SetMapper(mapper)
+    ## Rotate the skin so it fits the frog
+    actor.RotateZ(180)
+
+    renderer.AddActor(actor)
+
 def CreateFrogLut():
     colorLut = vtk.vtkLookupTable()
     colorLut.SetNumberOfColors(17)
@@ -67,6 +85,9 @@ for tissue in tissues:
     actor.GetProperty().SetSpecular(.5)
     actor.GetProperty().SetSpecularPower(10)
     renderer.AddActor(actor)
+
+
+CreateFrogSkin()
 
 renderer.GetActiveCamera().SetViewUp(-1, 0, -1)
 renderer.GetActiveCamera().SetPosition(0, -1, 0)
